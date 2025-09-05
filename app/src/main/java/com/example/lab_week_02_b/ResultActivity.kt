@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,9 @@ class ResultActivity : AppCompatActivity() {
         private const val COLOR_KEY = "COLOR_KEY"
         private const val ERROR_KEY = "ERROR_KEY"
     }
+
+    private val backButton: Button
+        get() = findViewById(R.id.back_button)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +50,11 @@ class ResultActivity : AppCompatActivity() {
             val resultMessage = findViewById<TextView>(R.id.color_code_result_message)
 
             resultMessage.text = getString(R.string.color_code_result_message, colorCode?.uppercase())
+        }
+
+        backButton.setOnClickListener {
+            val backIntent = Intent(this, MainActivity::class.java)
+            startActivity(backIntent)
         }
     }
 }
